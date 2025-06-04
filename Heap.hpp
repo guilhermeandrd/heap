@@ -48,6 +48,8 @@ public:
     
     void pop();
 
+    void pop(int index);
+
     //aumento da prioridade de elemento
     //passar vetor por referencia
     void increaseKey(int i, int newKey){
@@ -200,6 +202,21 @@ void Heap<T>:: buildMaxHeap(){
     for(int i = m_vec.size()/2; i>=1; i-- ){
         fixDown(i);
     }
+}
+
+template <typename T>
+
+void Heap<T> :: pop(int index){
+    if(empty()){
+        throw std::underflow_error("empty queue");
+    }
+
+    
+    m_vec[index] = m_vec[m_size];
+   
+    m_size--;
+    fixDown(index);
+    m_vec.pop_back();
 }
 
 #endif
